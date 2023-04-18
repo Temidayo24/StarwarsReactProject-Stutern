@@ -99,6 +99,7 @@
 
 .movieCard:hover {
   box-shadow: rgb(32, 152, 209) 0px 0px 10px 3px, rgb(0, 0, 0) 0px 0px 10px;
+  transition: .4s ease;
 }
 
 .title-date {
