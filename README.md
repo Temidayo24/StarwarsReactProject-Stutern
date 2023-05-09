@@ -1,70 +1,222 @@
-# Getting Started with Create React App
+// const Movies = ({
+//     title,
+//     director,
+//     producer,
+//     description,
+//     characters,
+//     planets,
+//     species,
+//     starships,
+//     vehicles}
+// ) =>
+// return (
+//     <>
+//       {error && <div>{Error}</div>}
+//       {data && (
+//         <div>
+//           <div>
+//             <h2>{data.title}</h2>
+//             <span>Director: {director}</span>
+//             <span>Producer: {producer}</span>
+//           </div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+//           <div>
+//             <h4>Description</h4>
+//             <span>{description}</span>
+//           </div>
 
-## Available Scripts
+//           <div>
+//             <h4>Characters</h4>
+//             <ul>
+//               {characters.map((character) => (
+//                 <li>{character}</li>
+//               ))}
+//             </ul>
+//           </div>
 
-In the project directory, you can run:
+//           <div>
+//             <h4>Planets</h4>
+//             <ul>
+//               {planets.map((planet) => (
+//                 <li>{planet}</li>
+//               ))}
+//             </ul>
+//           </div>
 
-### `npm start`
+//           <div>
+//             <h4>Species</h4>
+//             <ul>
+//               {species.map((specie) => (
+//                 <li>{specie}</li>
+//               ))}
+//             </ul>
+//           </div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+//           <div>
+//             <h4>Starships</h4>
+//             <ul>
+//               {starships.map((starship) => (
+//                 <li>{starship}</li>
+//               ))}
+//             </ul>
+//           </div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+//           <div>
+//             <h4>Vehicles</h4>
+//             <ul>
+//               {vehicles.map((vehicle) => (
+//                 <li>{vehicle}</li>
+//               ))}
+//             </ul>
+//           </div>
+//         </div>
+//       )}
+//     </>
+//   );
 
-### `npm test`
+ // console.log(object, "identifier2");
+  // const [data, setData] = new useState(null);
+  //  const [error, setError] = new useState(null);
+  //  const [loading, setLoading] = new useState(true);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  //  useEffect(() => {
+  //    fetch("https:swapi.dev/api/films")
+  //      .then((Response) => {
+  //        if (!Response.ok) {
+  //          throw new Error(`Error loading page`);
+  //        }
 
-### `npm run build`
+  //        return Response.json();
+  //      })
+  //      .then((actualData) => {
+  //        setData(actualData.results);
+  //        setError(null);
+  //        console.log(data);
+  //      })
+  //      .catch((error) => {
+  //        setError(error);
+  //        setData(null);
+  //      })
+  //      .finally(() => {
+  //        setLoading(false);
+  //      });
+  //  });
+// console.log("identifier 1");
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ {/* <div>
+        <div>
+          <h2>{title}</h2>
+          <span>Director: {director}</span>
+          <span>Producer: {producer}</span>
+        </div>
+        <div>
+          <h4>Description</h4>
+          <span>{description}</span>
+        </div>
+        <div>
+          <h4>Characters</h4>
+          <ul>
+            {characters?.map((character) => (
+              <li>{character}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4>Planets</h4>
+          <ul>
+            {planets.map((planet) => (
+              <li>{planet}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4>Species</h4>
+          <ul>
+            {species.map((specie) => (
+              <li>{specie}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4>Starships</h4>
+          <ul>
+            {starships.map((starship) => (
+              <li>{starship}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4>Vehicles</h4>
+          <ul>
+            {vehicles.map((vehicle) => (
+              <li>{vehicle}</li>
+            ))}
+          </ul>
+        </div>
+      </div> */}
+      {/* <img src="assets/logo.svg" alt="starwars_logo" className="app_logo" /> */}
+      {/* {data && (
+         <ul>
+           {data.map((movie) => {
+             return (
+               <li key={movie.episode_id}>
+                 <div>
+                   <h2>{movie.title}</h2>
+                   <span>Director: {movie.director}</span>
+                   <span>Producer: {movie.producer}</span>
+                 </div>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+                 <div>
+                   <h4>Description</h4>
+                   <span>{movie.opening_crawl}</span>
+                 </div>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+                 <div>
+                   <h4>Characters</h4>
+                   <ul>
+                     {movie.characters.map((character) => (
+                       <li>{character}</li>
+                     ))}
+                   </ul>
+                 </div>
 
-### `npm run eject`
+                 <div>
+                   <h4>Planets</h4>
+                   <ul>
+                     {movie.planets.map((planet) => (
+                       <li>{planet}</li>
+                     ))}
+                   </ul>
+                 </div>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+                 <div>
+                   <h4>Species</h4>
+                   <ul>
+                     {movie.species.map((specie) => (
+                       <li>{specie}</li>
+                     ))}
+                   </ul>
+                 </div>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+                 <div>
+                   <h4>Starships</h4>
+                   <ul>
+                     {movie.starships.map((starship) => (
+                       <li>{starship}</li>
+                     ))}
+                   </ul>
+                 </div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+                 <div>
+                   <h4>Vehicles</h4>
+                   <ul>
+                     {movie.vehicles.map((vehicle) => (
+                       <li>{vehicle}</li>
+                     ))}
+                   </ul>
+                 </div>
+               </li>
+             );
+           })}
+         </ul>
+       )} */}
