@@ -1,72 +1,127 @@
-import React from "react";
-import "./movies.css"
+import React, { useEffect, useState } from "react";
+import "./movies.css";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+<script src="http://192.168.0.134:8097"></script>;
 
-const Movies = ({ items, setHandleToggle }) => {
+const Movies = () => {
+  const [movieData, setMovieData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
-   return (
-     <div className="pageContainer">
-       <img src="assets/logo.svg" alt="starwars_logo" className="app_logo" />
+  const fetchData = async (urls) => {
+    const results = await Promise.all(urls.map((url) => axios.get(url)));
 
-       <div className="movieContainer">
-         <a href="/">Back to List</a>
-         <div>
-           <h2>{items.title}</h2>
-           <span>Director: {items.director}</span>
-           <span>Producer: {items.producer}</span>
-         </div>
+    return results.map((Response) => Response.data);
+  };
 
-         <div>
-           <h4>Description</h4>
-           <span>{items.opening_crawl}</span>
-         </div>
+  useEffect(() => {
+    const getMovieData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`https://swapi.dev/api/films/${id}`);
+        const movie = response.data;
 
-         <div>
-           <h4>Characters</h4>
-           <ul>
-             {items.characters.map((character) => (
-               <li>{character}</li>
-             ))}
-           </ul>
-         </div>
+        console.log(movie);
 
-         <div>
-           <h4>Planets</h4>
-           <ul>
-             {items.planets.map((planet) => (
-               <li>{planet}</li>
-             ))}
-           </ul>
-         </div>
+        const [characters, planets, species, starships, vehicles] =
+          await Promise.all([
+            fetchData(movie.characters),
+            fetchData(movie.planets),
+            fetchData(movie.species),
+            fetchData(movie.starships),
+            fetchData(movie.vehicles),
+          ]);
 
-         <div>
-           <h4>Species</h4>
-           <ul>
-             {items.species.map((specie) => (
-               <li>{specie}</li>
-             ))}
-           </ul>
-         </div>
+        setMovieData({
+          ...movie,
+          characters,
+          planets,
+          species,
+          starships,
+          vehicles,
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
 
-         <div>
-           <h4>Starships</h4>
-           <ul>
-             {items.starships.map((starship) => (
-               <li>{starship}</li>
-             ))}
-           </ul>
-         </div>
+    getMovieData();
+  }, [id]);
 
-         <div>
-           <h4>Vehicles</h4>
-           <ul>
-             {items.vehicles.map((vehicle) => (
-               <li>{vehicle}</li>
-             ))}
-           </ul>
-         </div>
-       </div>
-     </div>
-   );
+  return (
+    <>
+      <div className="pageContainer">
+        <img src="/assets/logo.svg" alt="starwars_logo" className="app_logo" />
+        {loading ? (
+          <img
+            src="/assets/loader.svg"
+            alt="loader_img"
+            className="loader-img"
+          />
+        ) : (
+          <div className="movieContainer">
+            <Link to="/">← Back to List</Link>
+            <div>
+              <h2>{movieData.title}</h2>
+              <span>Director: {movieData.director}</span>
+              <span>Producer: {movieData.producer}</span>
+            </div>
+
+            <div>
+              <h4>Description</h4>
+              <span>{movieData.opening_crawl}</span>
+            </div>
+
+            <div>
+              <h4>Characters</h4>
+              <ul>
+                {movieData.characters.map((character, index) => {
+                  return <li key={index}>{character.name}</li>;
+                })}
+              </ul>
+            </div>
+
+            <div>
+              <h4>Planets</h4>
+              <ul>
+                {movieData.planets.map((planet, index) => (
+                  <li key={index}>{planet.name}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4>Species</h4>
+              <ul>
+                {movieData.species.map((specie, index) => (
+                  <li key={index}>{specie.name}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4>Starships</h4>
+              <ul>
+                {movieData.starships.map((starship, index) => (
+                  <li key={index}>{starship.name}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4>Vehicles</h4>
+              <ul>
+                {movieData.vehicles.map((vehicle, index) => (
+                  <li key={index}>{vehicle.name}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default Movies;
