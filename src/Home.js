@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { useState, useEffect } from "react";
-import {Outlet} from "react-router-dom";
+// import {Outlet} from "react-router-dom";
 import { Link } from "react-router-dom";
 import Movies from "./Movies";
 

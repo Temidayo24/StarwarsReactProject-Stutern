@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./movies.css";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-<script src="http://192.168.0.134:8097"></script>;
 
 const Movies = () => {
   const [movieData, setMovieData] = useState([]);
@@ -23,6 +22,7 @@ const Movies = () => {
         const movie = response.data;
 
         console.log(movie);
+        console.log(response);
 
         const [characters, planets, species, starships, vehicles] =
           await Promise.all([
@@ -75,47 +75,57 @@ const Movies = () => {
 
             <div>
               <h4>Characters</h4>
-              <ul>
-                {movieData.characters.map((character, index) => {
-                  return <li key={index}>{character.name}</li>;
-                })}
-              </ul>
+              {movieData && (
+                <ul>
+                  {movieData.characters?.map((character, index) => {
+                    return <li key={index}>{character.name}</li>;
+                  })}
+                </ul>
+              )}
             </div>
 
             <div>
               <h4>Planets</h4>
-              <ul>
-                {movieData.planets.map((planet, index) => (
-                  <li key={index}>{planet.name}</li>
-                ))}
-              </ul>
+              {movieData && (
+                <ul>
+                  {movieData.planets?.map((planet, index) => (
+                    <li key={index}>{planet.name}</li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <div>
               <h4>Species</h4>
-              <ul>
-                {movieData.species.map((specie, index) => (
-                  <li key={index}>{specie.name}</li>
-                ))}
-              </ul>
+              {movieData && (
+                <ul>
+                  {movieData.species?.map((specie, index) => (
+                    <li key={index}>{specie.name}</li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <div>
               <h4>Starships</h4>
-              <ul>
-                {movieData.starships.map((starship, index) => (
-                  <li key={index}>{starship.name}</li>
-                ))}
-              </ul>
+              {movieData && (
+                <ul>
+                  {movieData.starships?.map((starship, index) => (
+                    <li key={index}>{starship.name}</li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <div>
               <h4>Vehicles</h4>
-              <ul>
-                {movieData.vehicles.map((vehicle, index) => (
+              {movieData && (
+                <ul>
+                  {movieData.vehicles?.map((vehicle, index) => (
                   <li key={index}>{vehicle.name}</li>
                 ))}
-              </ul>
+                </ul>
+              )}
             </div>
           </div>
         )}
